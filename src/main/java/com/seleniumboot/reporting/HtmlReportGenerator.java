@@ -284,8 +284,10 @@ public final class HtmlReportGenerator {
         String template = loadTemplate();
 
         return template
+                .replace("{{CHART_JS}}", loadResource("report/chart.umd.min.js"))
                 .replace("{{REPORT_CSS}}", loadResource("report/report.css"))
                 .replace("{{REPORT_JS}}", loadResource("report/report.js"))
+                .replace("{{REPORT_MARKUP}}", loadMarkup())
                 .replace("{{RUN_SUMMARY}}", metadata[0])
                 .replace("{{METADATA}}", metadata[1])
                 .replace("{{PASSED}}", String.valueOf(passedTests))
@@ -1023,6 +1025,18 @@ public final class HtmlReportGenerator {
 
     private static String loadTemplate() {
         return loadResource("report-template.html");
+    }
+
+    private static String loadMarkup() {
+        return loadResource("report/partials/appbar.html")
+                + loadResource("report/partials/lightbox.html")
+                + "<div class=\"layout\">\n"
+                + loadResource("report/partials/sidebar.html")
+                + "<main class=\"main-content\">\n"
+                + loadResource("report/partials/dashboard.html")
+                + loadResource("report/partials/tests.html")
+                + loadResource("report/partials/failures.html")
+                + "</main>\n</div>\n";
     }
 
     private static String loadResource(String name) {

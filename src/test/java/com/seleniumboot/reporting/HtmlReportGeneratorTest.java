@@ -62,6 +62,16 @@ public class HtmlReportGeneratorTest {
     }
 
     @Test
+    public void generatedReportEmbedsAssetsForOfflineUse() throws Exception {
+        String html = html(1, 0);
+        assertTrue(html.contains("--primary: #303f9f"));
+        assertTrue(html.contains("function showTab(tabId, el)"));
+        assertTrue(html.contains("Chart"));
+        assertFalse(html.contains("<script src="));
+        assertFalse(html.contains("<link href="));
+    }
+
+    @Test
     public void summaryLineCarriesTheKeyFacts() throws Exception {
         String html = html(3, 0);
         assertTrue(html.contains("class=\"run-summary\""));

@@ -1,0 +1,38 @@
+        <div id="tab-tests" class="tab-pane">
+            <div class="tab-heading">Test Cases</div>
+            <div class="card table-card">
+                <div class="filter-bar">
+                    <button type="button" class="filter-btn active" onclick="setFilter('ALL', this)">All</button>
+                    <button type="button" class="filter-btn" onclick="setFilter('PASSED', this)">Passed</button>
+                    <button type="button" class="filter-btn" onclick="setFilter('FAILED', this)">Failed</button>
+                    <button type="button" class="filter-btn" onclick="setFilter('SKIPPED', this)">Skipped</button>
+                    <button type="button" class="filter-btn" onclick="setFilter('FLAKY', this)">Flaky</button>
+                    <span id="activeTagPill" class="active-tag-pill" style="display:none;">
+                        <span id="activeTagName"></span>
+                        <button type="button" class="tag-clear-btn" onclick="clearTagFilter()" title="Clear tag filter">&times;</button>
+                    </span>
+                    <div class="search-wrap">
+                        <span class="search-icon">&#128269;</span>
+                        <input type="text" id="searchInput" placeholder="Search by test, class, or tag..." oninput="applySearch()">
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table id="testTable">
+                        <thead>
+                            <tr>
+                                <th>Test</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Logic (ms)</th>
+                                <th>Total (ms)</th>
+                                <th>Screenshot</th>
+                                <th>Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ROWS}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>

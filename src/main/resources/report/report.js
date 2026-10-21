@@ -33,6 +33,8 @@ function toggleDark() {
 // ── Charts ──
 const executionData = JSON.parse('{{EXECUTION_PERCENTILES}}');
 const donutData     = {{DONUT_DATA}};
+const themeColors = getComputedStyle(document.documentElement);
+const color = name => themeColors.getPropertyValue(name).trim();
 function safeVal(obj, key) { return obj && obj[key] ? obj[key] : 0; }
 if (window.Chart) {
     new Chart(document.getElementById('donutChart'), {
@@ -40,7 +42,8 @@ if (window.Chart) {
         data: {
             labels: ['Passed', 'Failed', 'Skipped'],
             datasets: [{ data: [donutData.passed, donutData.failed, donutData.skipped],
-                backgroundColor: ['#43a047','#e53935','#fb8c00'], borderWidth: 2, borderColor: '#fff' }]
+                backgroundColor: [color('--good'), color('--bad'), color('--warn')],
+                borderWidth: 2, borderColor: color('--surface') }]
         },
         options: { responsive: true, maintainAspectRatio: true, cutout: '65%',
             plugins: { legend: { position: 'bottom', labels: { font: { family: 'Roboto', size: 12 } } } } }
@@ -52,7 +55,8 @@ if (window.Chart) {
             datasets: [{ label: 'Execution Time (ms)',
                 data: [safeVal(executionData,'p50'), safeVal(executionData,'p90'),
                        safeVal(executionData,'p95'), safeVal(executionData,'p99')],
-                backgroundColor: 'rgba(48,63,159,.25)', borderColor: '#303f9f', borderWidth: 1, borderRadius: 4 }]
+                backgroundColor: color('--primary') + '40', borderColor: color('--primary'),
+                borderWidth: 1, borderRadius: 4 }]
         },
         options: { responsive: true, maintainAspectRatio: false,
             plugins: { legend: { labels: { font: { family: 'Roboto', size: 13 } } } },
@@ -73,9 +77,9 @@ if (window.Chart && trendData.length >= 2) {
             plugins: { legend: { display: false } },
             scales: { x: { grid: { display: false } }, y: { beginAtZero: true, max } } }
     });
-    line('trendRateChart', 'Pass rate (%)', trendData.map(r => r.passRate), '#43a047', 100);
-    line('trendTimeChart', 'Duration (s)', trendData.map(r => r.durationSec), '#303f9f');
-    line('trendFlakyChart', 'Flaky tests', trendData.map(r => r.flakyTests), '#f57c00');
+    line('trendRateChart', 'Pass rate (%)', trendData.map(r => r.passRate), color('--good'), 100);
+    line('trendTimeChart', 'Duration (s)', trendData.map(r => r.durationSec), color('--primary'));
+    line('trendFlakyChart', 'Flaky tests', trendData.map(r => r.flakyTests), color('--warn'));
 }
 
 // ── Collapse / expand class groups ──

@@ -1,0 +1,22 @@
+    <nav class="sidebar">
+        <div class="sidebar-brand">&#9889; Selenium Boot</div>
+        <ul class="nav-list">
+            <li class="nav-item active" onclick="showTab('dashboard', this)">
+                <span class="nav-icon">&#128200;</span>
+                <span class="nav-label">Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="showTab('tests', this)">
+                <span class="nav-icon">&#9635;</span>
+                <span class="nav-label">Test Cases</span>
+                <span class="nav-count">{{TOTAL_TESTS}}</span>
+            </li>
+            <li class="nav-item" onclick="showTab('failures', this)">
+                <span class="nav-icon">&#10005;</span>
+                <span class="nav-label">Failures</span>
+                {{FAILURE_BADGE}}
+            </li>
+        </ul>
+        <div class="sidebar-stats">
+            <div>Duration: <strong>{{SUITE_DURATION}}</strong></div>
+            <div>Pass rate: <strong class="{{PASS_RATE_CLASS}}">{{PASS_RATE}}%</strong></div>
+        </div>
