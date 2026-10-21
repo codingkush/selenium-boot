@@ -284,6 +284,7 @@ public final class HtmlReportGenerator {
 
         return template
                 .replace("{{REPORT_CSS}}", loadResource("report/report.css"))
+                .replace("{{REPORT_JS}}", loadResource("report/report.js"))
                 .replace("{{RUN_SUMMARY}}", metadata[0])
                 .replace("{{METADATA}}", metadata[1])
                 .replace("{{PASSED}}", String.valueOf(passedTests))
