@@ -65,6 +65,7 @@ const sidebars = {
         'recipes/handle-new-windows',
         'recipes/drag-and-drop',
         'recipes/handle-shadow-dom',
+        'recipes/read-table-rows',
       ],
     },
     {

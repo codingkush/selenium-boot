@@ -311,6 +311,46 @@
 
         .footer { text-align: center; padding: 20px; font-size: 12px; color: var(--text-secondary); }
 
+        /* ── Tag Chips & Tag Table ── */
+        .tag-chips-wrap { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+        .tag-chip {
+            display: inline-flex; align-items: center;
+            background: var(--surface2); color: var(--primary);
+            border: 1px solid var(--border); border-radius: 12px;
+            padding: 1px 8px; font-size: 11px; font-weight: 500;
+            cursor: pointer; transition: all .15s ease;
+            font-family: 'Roboto', sans-serif;
+            user-select: none; -webkit-user-select: none;
+        }
+        .tag-chip:hover {
+            background: var(--primary); color: #fff; border-color: var(--primary);
+        }
+        .active-tag-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--primary-light); color: var(--primary);
+            border: 1px solid var(--primary); border-radius: 14px;
+            padding: 2px 10px; font-size: 12px; font-weight: 600;
+        }
+        .tag-clear-btn {
+            background: none; border: none; color: inherit;
+            font-size: 14px; line-height: 1; cursor: pointer;
+            padding: 0; font-weight: 700; opacity: .7;
+        }
+        .tag-clear-btn:hover { opacity: 1; }
+        .tag-summary-table { width: 100%; border-collapse: collapse; }
+        .tag-summary-table th {
+            background: transparent; color: var(--text-secondary);
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: .5px; padding: 8px 12px; border-bottom: 2px solid var(--border);
+            text-align: left;
+        }
+        .tag-summary-table td {
+            padding: 10px 12px; font-size: 13px; border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+        .tag-summary-table tr:hover { background: var(--hover); }
+        .tag-rate { font-weight: 700; font-size: 13px; }
+
         /* ── Responsive ── */
         @media (max-width: 768px) {
             .layout { flex-direction: column; }
