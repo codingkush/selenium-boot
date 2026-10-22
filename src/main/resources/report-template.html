@@ -133,6 +133,8 @@
                 <div class="card-body">{{SLOWEST_TESTS}}</div>
             </div>
 
+            {{TAG_RESULTS}}
+
             <!-- Flakiness Radar -->
             {{FLAKINESS_SECTION}}
 
@@ -152,9 +154,13 @@
                     <button type="button" class="filter-btn" onclick="setFilter('FAILED', this)">Failed</button>
                     <button type="button" class="filter-btn" onclick="setFilter('SKIPPED', this)">Skipped</button>
                     <button type="button" class="filter-btn" onclick="setFilter('FLAKY', this)">Flaky</button>
+                    <span id="activeTagPill" class="active-tag-pill" style="display:none;">
+                        <span id="activeTagName"></span>
+                        <button type="button" class="tag-clear-btn" onclick="clearTagFilter()" title="Clear tag filter">&times;</button>
+                    </span>
                     <div class="search-wrap">
                         <span class="search-icon">&#128269;</span>
-                        <input type="text" id="searchInput" placeholder="Search by test or class..." oninput="applySearch()">
+                        <input type="text" id="searchInput" placeholder="Search by test, class, or tag..." oninput="applySearch()">
                     </div>
                 </div>
                 <div class="table-wrap">

@@ -97,6 +97,31 @@ function toggleDetail(idx) {
     if (icon) icon.classList.toggle('open', !isOpen);
 }
 
+// ── Tag filtering ──
+let activeTagFilter = '';
+function filterByTag(tagName, event) {
+    if (event) event.stopPropagation();
+    activeTagFilter = (tagName || '').toLowerCase().trim();
+    showTab('tests', document.querySelector('.nav-item[onclick*=\'tests\']'));
+    const pill = document.getElementById('activeTagPill');
+    const nameSpan = document.getElementById('activeTagName');
+    if (pill && nameSpan) {
+        if (activeTagFilter) {
+            nameSpan.textContent = 'Tag: ' + tagName;
+            pill.style.display = 'inline-flex';
+        } else {
+            pill.style.display = 'none';
+        }
+    }
+    applySearch();
+}
+function clearTagFilter() {
+    activeTagFilter = '';
+    const pill = document.getElementById('activeTagPill');
+    if (pill) pill.style.display = 'none';
+    applySearch();
+}
+
 // ── Filter + search (Test Cases tab) ──
 let activeFilter = 'ALL';
 function setFilter(status, btn) {
@@ -113,12 +138,17 @@ function applySearch() {
         const rowStatus = row.getAttribute('data-status') || '';
         const rowTest   = row.getAttribute('data-test')   || '';
         const groupId   = row.getAttribute('data-group')  || '';
+        const rowTags   = (row.getAttribute('data-tags')  || '').split(',').map(t => t.trim().toLowerCase()).filter(Boolean);
         const hasRetry  = row.querySelector('.retry-badge') !== null;
         const matchFilter = activeFilter === 'ALL'
             || activeFilter === rowStatus
             || (activeFilter === 'FLAKY' && hasRetry);
-        const matchSearch = !q || rowTest.includes(q) || groupId.toLowerCase().includes(q);
-        const show = matchFilter && matchSearch;
+        const matchTag = !activeTagFilter || rowTags.includes(activeTagFilter);
+        const matchSearch = !q
+            || rowTest.includes(q)
+            || groupId.toLowerCase().includes(q)
+            || rowTags.some(t => t.includes(q));
+        const show = matchFilter && matchTag && matchSearch;
         row.style.display = show ? '' : 'none';
         if (show) visibleGroups.add(groupId);
         const next = row.nextElementSibling;
