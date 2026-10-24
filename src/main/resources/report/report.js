@@ -35,6 +35,7 @@ const executionData = JSON.parse('{{EXECUTION_PERCENTILES}}');
 const donutData     = {{DONUT_DATA}};
 const themeColors = getComputedStyle(document.documentElement);
 const color = name => themeColors.getPropertyValue(name).trim();
+const chartFontFamily = 'Roboto, "Segoe UI", Arial, sans-serif';
 function safeVal(obj, key) { return obj && obj[key] ? obj[key] : 0; }
 if (window.Chart) {
     new Chart(document.getElementById('donutChart'), {
@@ -46,7 +47,7 @@ if (window.Chart) {
                 borderWidth: 2, borderColor: color('--surface') }]
         },
         options: { responsive: true, maintainAspectRatio: true, cutout: '65%',
-            plugins: { legend: { position: 'bottom', labels: { font: { family: 'Roboto', size: 12 } } } } }
+            plugins: { legend: { position: 'bottom', labels: { font: { family: chartFontFamily, size: 12 } } } } }
     });
     new Chart(document.getElementById('executionChart'), {
         type: 'bar',
@@ -59,7 +60,7 @@ if (window.Chart) {
                 borderWidth: 1, borderRadius: 4 }]
         },
         options: { responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { labels: { font: { family: 'Roboto', size: 13 } } } },
+            plugins: { legend: { labels: { font: { family: chartFontFamily, size: 13 } } } },
             scales: { x: { grid: { display: false } }, y: { beginAtZero: true } } }
     });
 }
