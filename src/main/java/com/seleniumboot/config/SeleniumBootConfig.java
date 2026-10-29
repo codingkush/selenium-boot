@@ -293,63 +293,25 @@ public final class SeleniumBootConfig {
         }
 
         public static final class LambdaTest {
-            private String username;
-            private String accessKey;
-            private String platform = "Windows 11";
-            private String browser = "chrome";
-            private String browserVersion = "latest";
-            private java.util.Map<String, Object> capabilities
-                    = new java.util.LinkedHashMap<>();
+            private String  username;
+            private String  accessKey;
+            private String  platform      = "Windows 11";
+            private String  browser       = "chrome";
+            private String  browserVersion = "latest";
+            private java.util.Map<String, Object> capabilities = new java.util.LinkedHashMap<>();
 
-            public String getUsername() {
-                return username;
-            }
-
-            public void setUsername(String v) {
-                this.username = v;
-            }
-
-            public String getAccessKey() {
-                return accessKey;
-            }
-
-            public void setAccessKey(String v) {
-                this.accessKey = v;
-            }
-
-            public String getPlatform() {
-                return platform;
-            }
-
-            public void setPlatform(String v) {
-                this.platform = v;
-            }
-
-            public String getBrowser() {
-                return browser;
-            }
-
-            public void setBrowser(String v) {
-                this.browser = v;
-            }
-
-            public String getBrowserVersion() {
-                return browserVersion;
-            }
-
-            public void setBrowserVersion(String v) {
-                this.browserVersion = v;
-            }
-
-            public java.util.Map<String, Object> getCapabilities() {
-                return capabilities;
-            }
-
-            public void setCapabilities(java.util.Map<String, Object> v) {
-                this.capabilities = v != null
-                        ? v
-                        : new java.util.LinkedHashMap<>();
-            }
+            public String  getUsername()              { return username; }
+            public void    setUsername(String v)      { this.username = v; }
+            public String  getAccessKey()             { return accessKey; }
+            public void    setAccessKey(String v)     { this.accessKey = v; }
+            public String  getPlatform()              { return platform; }
+            public void    setPlatform(String v)      { this.platform = v; }
+            public String  getBrowser()               { return browser; }
+            public void    setBrowser(String v)       { this.browser = v; }
+            public String  getBrowserVersion()        { return browserVersion; }
+            public void    setBrowserVersion(String v){ this.browserVersion = v; }
+            public java.util.Map<String, Object> getCapabilities() { return capabilities; }
+            public void setCapabilities(java.util.Map<String, Object> v) { this.capabilities = v != null ? v : new java.util.LinkedHashMap<>(); }
         }
     }
 
